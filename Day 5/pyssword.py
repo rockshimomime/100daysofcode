@@ -1,4 +1,4 @@
-from random import randint
+from random import choice, shuffle
 
 letters = [
     'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
@@ -10,24 +10,25 @@ numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
 
 print("Welcome to the Pyssword Generator!")
-# nr_letters = int(input("How many letters would you like in your password?\n"))
-# nr_symbols = int(input("How many symbols would you like?\n"))
-# nr_numbers = int(input("How many numbers would you like?\n"))
-nr_letters = 4
-nr_symbols = 4
-nr_numbers = 4
+nr_letters = int(input("How many letters would you like in your password?\n"))
+nr_symbols = int(input("How many symbols would you like?\n"))
+nr_numbers = int(input("How many numbers would you like?\n"))
+
+password_list = []
 password = ""
 
 for character in range(1, nr_letters + 1):
-    letter = letters[randint(1, (len(letters) - 1))]
-    password = password + letter
+    password_list.append(choice(letters))
 
 for character in range(1, nr_numbers + 1):
-    number = numbers[randint(1, (len(numbers) - 1))]
-    password = password + number
+    password_list.append(choice(numbers))
 
 for character in range(1, nr_symbols + 1):
-    symbol = symbols[randint(1, (len(symbols) - 1))]
-    password = password + symbol
+    password_list.append(choice(symbols))
+
+shuffle(password_list)
+
+for character in password_list:
+    password += character
 
 print(f"Your new password: {password}")
